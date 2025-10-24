@@ -108,3 +108,129 @@ closeBtn.addEventListener("click", function () {
     setMusicVolume(0.3); // restore music volume
   }
 });
+
+// Menu modals
+
+// Info modal (nav menu: "Om")
+
+const infoModal = document.createElement("div");
+infoModal.className ="info-modal hidden";
+infoModal.innerHTML = `
+    <div class="info-content">
+        <button class="sound-toggle">
+            <img src="assets/icons/icon_soundon.svg" alt="Toggle sound" />
+        </button>
+
+        <button class="close-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFDDB5"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+            </svg>
+        </button>
+
+        <h2 class="info-title">Om projektet</h2>
+
+        <nav class="info-tabs">
+            <button data-file="about.html" class="active">Bakgrund</button>
+            <button data-file="tech.html">Teknisk fördjupning</button>
+            <button data-file="me.html">Om mig</button>
+        </nav>
+
+        <div class="info-body">
+            <p>Laddar innehåll...</p>        
+        </div>
+    </div>
+    `;
+
+// Add modal to document
+document.body.appendChild(infoModal);
+
+const infoCloseBtn = infoModal.querySelector(".close-btn");
+const infoTabs = infoModal.querySelectorAll(".info-tabs button");
+const infoBody = infoModal.querySelector(".info-body");
+
+// Opens the modal and loads html file
+function openInfoModal(file) {
+    infoModal.classList.remove("hidden");
+    loadInfoContent(file);
+
+    if (typeof setMusicVolume == "function") {
+        setMusicVolume(0.15) // Softly fade the backgrund music
+    }
+}
+
+// Fetch and inject html content
+function loadInfoContent(fileName) {
+  infoBody.innerHTML = "<p>Laddar innehåll...</p>";
+
+  fetch(`content/${fileName}`)
+    .then(res => {
+      if (!res.ok) throw new Error("Kunde inte ladda innehållet.");
+      return res.text();
+    })
+    .then(html => {
+      infoBody.innerHTML = html;
+    })
+    .catch(() => {
+      infoBody.innerHTML = "<p>Kunde inte ladda innehållet just nu.</p>";
+    });
+}
+
+// Close the modal
+infoCloseBtn.addEventListener("click", () => {
+  infoModal.classList.add("hidden");
+  if (typeof setMusicVolume == "function") {
+    setMusicVolume(0.3);
+  }
+  collapseMobileMenu();
+});
+
+// Collaspe mobile menu if modal was open
+function collapseMobileMenu () {
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const mobileButton = document.querySelector(".menu-toggle-mobile");
+
+    if (mobileMenu && mobileMenu.classList.contains("menu-mobile-active")) {
+        mobileMenu.classList.remove("menu-mobile-active");
+    }
+
+    if (mobileButton) {
+        mobileButton.classList.remove("active");
+    }
+}
+
+// Tab switching
+infoTabs.forEach(btn => {
+  btn.addEventListener("click", () => {
+    infoTabs.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    loadInfoContent(btn.dataset.file);
+  });
+});
+
+// When clicking "Om" in any menu (desktop or mobile)
+document.querySelectorAll("a").forEach(link => {
+  if (link.textContent.trim() === "Om") {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      openInfoModal("about.html");
+    });
+  }
+});
+
+// Close modals with esc
+document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" || e.key === "Esc") {
+        // poem modal
+        if(!modal.classList.contains("hidden")) {
+            modal.classList.add("hidden");
+            if (typeof setMusicVolume == "function") setMusicVolume(0.3);
+        }
+        
+        // info modal
+        if(!infoModal.classList.contains("hidden")) {
+            if (!infoModal.classList.add("hidden")) {
+                infoModal.classList.add("hidden");
+                if (typeof setMusicVolume == "function") setMusicVolume(0.3);
+            }
+        }
+    }
+});

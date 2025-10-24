@@ -27,6 +27,11 @@ html, body {
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'Great Vibes';
+  src: url("../assets/fonts/GreatVibes-Regular.ttf") format('truetype');
+}
+
 /* Navigation: desktop layout */
 .menu {
   font-family: 'Lora', serif;
@@ -132,13 +137,13 @@ html, body {
   width: 28px;
   height: 28px;
   filter: brightness(0) saturate(100%) invert(90%) sepia(22%)
-          saturate(652%) hue-rotate(329deg) brightness(104%) contrast(101%);
+  saturate(652%) hue-rotate(329deg) brightness(104%) contrast(101%);
   transition: filter 0.2s ease;
 }
 
 .sound-toggle.global-sound:hover img {
   filter: brightness(0) saturate(100%) invert(93%) sepia(17%)
-          saturate(607%) hue-rotate(329deg) brightness(106%) contrast(101%);
+  saturate(607%) hue-rotate(329deg) brightness(106%) contrast(101%);
 }
 
 @media (max-width: 768px) {
@@ -324,8 +329,157 @@ html, body {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.45);
 }
 
+/* Info modal */
+.info-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 120;
+}
+
+.info-modal h2 {
+  font-family: 'Great Vibes', serif;
+  font-size: 2rem;
+}
+
+.info-modal.hidden {
+  display: none !important;
+}
+
+.info-content {
+  position: relative;
+  width: 680px;
+  height: 80vh;
+  padding: 2.5rem 3rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(6px);
+  border-radius: 6px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  font-family: 'Lora', serif;
+  color: #FFDDB5;
+  text-align: center;
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+.info-title {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1.8rem;
+  color: #FFE4C5;
+}
+
+.info-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.info-tabs button {
+  background: none;
+  border: none;
+  font-family: 'Lora', serif;
+  color: #FFDDB5;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: color 0.3s ease, filter 0.3s ease;
+}
+
+.info-tabs button:hover,
+.info-tabs button.active {
+  color: #FFE4C5;
+  filter: drop-shadow(0 0 6px rgba(255, 220, 160, 0.9));
+}
+
+.info-body {
+  text-align: left;
+  max-width: 580px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  height: calc(100% - 180px);
+  overflow-y: auto;
+  padding-right: 0.6rem;
+}
+
+/* custom scrollbar */
+.info-body::-webkit-scrollbar {
+  width: 8px;
+}
+.info-body::-webkit-scrollbar-track {
+  background: rgba(255, 221, 181, 0.1);
+  border-radius: 10px;
+}
+.info-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 221, 181, 0.35);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+.info-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 221, 181, 0.55);
+}
+
+/* Close button */
+.info-modal .close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 200;  
+}
+
+.info-modal .close-btn svg {
+  width: 22px;
+  height: 22px;
+  opacity: 0.85;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.info-modal .close-btn:hover svg {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+/* Sound button */
+.info-modal .sound-toggle {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 200;
+  color: inherit;
+}
+
+.info-modal .sound-toggle img {
+  width: 22px;
+  height: 22px;
+  opacity: 0.85;
+  filter: brightness(0) saturate(100%) invert(90%) sepia(22%)
+  saturate(652%) hue-rotate(329deg) brightness(104%) contrast(101%);
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.info-modal .sound-toggle:hover img {
+  filter: brightness(0) saturate(100%) invert(93%) sepia(17%)
+  saturate(607%) hue-rotate(329deg) brightness(106%) contrast(101%);
+  transform: scale(1.05);
+}
+
 /* Hide global sound button when a modal is open */
-body:has(.modal:not(.hidden)) .global-sound {
+body:has(.modal:not(.hidden)) .global-sound,
+body:has(.info-modal:not(.hidden)) .global-sound {
   display: none !important;
   pointer-events: none;
 }
@@ -356,7 +510,7 @@ body:has(.modal:not(.hidden)) .global-sound {
   opacity: 1;
 }
 
-/* Mobile-specific styles and orientation warning */
+/* Mobile settings */
 
 /* Overlay message for landscape on small devices */
 @media (max-width: 430px) and (orientation: landscape),
@@ -421,9 +575,9 @@ body:has(.modal:not(.hidden)) .global-sound {
   border: none;
   border-radius: 2px;
   cursor: pointer;
-  z-index: 30; /* stays above the menu */
+  z-index: 30;
   color: #FFDDB5;
-  display: none; /* hidden by default (desktop) */
+  display: none;
 }
 
 .menu-toggle-mobile svg {
@@ -506,6 +660,31 @@ body:has(.modal:not(.hidden)) .global-sound {
     filter: drop-shadow(0 0 6px rgba(255, 220, 160, 0.9));
   }
 }
+/* info modal */
+@media screen and (max-width: 768px) {
+
+  .info-content {
+    width: 90vw;
+    height: 90dvh;
+  }
+
+  .info-tabs {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .info-tabs button {
+    font-size: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  .info-body {
+    height: calc(100% - 220px);
+  }
+
+}
 
 /* Font and layout scaling for smallest devices */
 @media screen and (max-width: 380px) {
@@ -572,7 +751,7 @@ body:has(.modal:not(.hidden)) .global-sound {
 /* Tweaks for narrow but not tiny viewports */
 @media screen and (min-height: 701px) and (max-height: 780px) and (max-width: 420px) {
   .modal-content {
-    padding: 1rem 1.5rem 2.5rem 1.5rem !important; /* slightly tighter top */
+    padding: 1rem 1.5rem 2.5rem 1.5rem !important;
   }
 
   .modal-body {
