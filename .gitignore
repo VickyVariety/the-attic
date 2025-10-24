@@ -1,0 +1,13 @@
+# System
+.DS_Store
+Thumbs.db
+
+# Local environment
+.vscode/
+.idea/
+.env
+
+# OS / Cache
+*.tmp
+*.swp
+*.cache

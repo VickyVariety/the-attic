@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>The Attic - Canvas-test</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Main canvas that fills the window -->
+  <!-- This is where the attic background and all interactive objects are rendered -->
+  <canvas id="atticCanvas"></canvas>
+
+  <!-- Mobile menu button -->
+  <!-- Only visible on smaller screens, toggles the mobile nav -->
+  <button class="menu-toggle-mobile" aria-label="Open mobile menu">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2A1D13">
+      <path d="M160-240q-17 0-28.5-11.5T120-280q0-17 11.5-28.5T160-320h640q17 0 28.5 11.5T840-280q0 17-11.5 28.5T800-240H160Zm0-200q-17 0-28.5-11.5T120-480q0-17 11.5-28.5T160-520h640q17 0 28.5 11.5T840-480q0 17-11.5 28.5T800-440H160Zm0-200q-17 0-28.5-11.5T120-680q0-17 11.5-28.5T160-720h640q17 0 28.5 11.5T840-680q0 17-11.5 28.5T800-640H160Z"/>
+    </svg>
+  </button>
+
+  <!-- Global sound toggle -->
+  <!-- Controls background music and ambient audio -->
+  <button class="sound-toggle global-sound" aria-label="Toggle sound">
+    <img src="assets/icons/icon_soundon.svg" alt="Toggle sound" />
+  </button>
+
+  <!-- Mobile menu navigation -->
+  <nav class="mobile-menu">
+    <ul>
+      <li><a href="#">Hem</a></li>
+      <li><a href="#">Om</a></li>
+      <li><a href="#">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- Desktop menu navigation -->
+  <!-- Appears on larger screens and toggles with the arrow button -->
+  <nav class="menu" aria-label="Main menu (desktop)">
+    <button class="menu-toggle" aria-label="Open menu">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#2A1D13">
+        <path d="M400-80 0-480l400-400 71 71-329 329 329 329-71 71Z"/>
+      </svg>
+    </button>
+
+    <div class="menu-links">
+      <ul>
+        <li><a href="#">Hem</a></li>
+        <li><a href="#">Om</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Modal window for displaying poems -->
+  <!-- Triggered when clicking an interactive object in the attic -->
+  <div class="modal hidden">
+    <div class="modal-content">
+
+      <!-- Local sound toggle for the modal -->
+      <button class="sound-toggle">
+        <img src="assets/icons/icon_soundon.svg" alt="Toggle sound" />
+      </button>
+
+      <!-- Close button (top right) -->
+      <button class="close-btn">
+        <img src="assets/icons/icon_close.svg" alt="Close" />
+      </button>
+
+      <!-- Header with object icon -->
+      <div class="modal-header">
+        <img src="" alt="" class="modal-icon" />
+      </div>
+
+      <!-- Poem body -->
+      <div class="modal-body">
+        <p class="poem-text"></p>
+      </div>
+
+      <!-- Footer with poem title and nav buttons -->
+      <div class="modal-footer">
+        <div class="poem-title"></div>
+        <div class="modal-nav">
+          <button class="prev">
+            <img src="assets/icons/icon_arrowback.svg" alt="Previous" />
+          </button>
+          <button class="next">
+            <img src="assets/icons/icon_arrowforward.svg" alt="Next" />
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Site footer -->
+  <footer class="site-footer">2025 © VickyVariety</footer>
+
+  <!-- Scripts -->
+  <script src="js/attic.js"></script>
+  <script src="js/modals.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>
