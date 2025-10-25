@@ -1,0 +1,89 @@
+<section class="process-section">
+    <!-- 3D build section -->
+    <h3>Att bygga vinden i 3D</h3>
+
+    <p>
+        Scenen skapades i Blender, ett öppet källkodsprogram för 3D-datorgrafik som kan användas för att bygga allt från enkla former till helt fotorealistiska scener.
+        Inga referensbilder användes. Allt gjordes från grunden, med betoning på:
+    </p>
+
+    <ul>
+        <li>Tydlig komposition som fungerar både horisontellt och vertikalt</li>
+        <li>Ljuset i samspel med känslan</li>
+    </ul>
+
+    <p>
+        Idén var att använda 3D-renderade stillbilder som grund för den interaktiva upplevelsen, för att bevara djup och ljus men samtidigt skapa en lättare och mer optimerad sida. Varje objekt formades för att kännas som en ledtråd i berättelsen, med ett uttryck som balanserar enkelhet, värme och detaljer.
+    </p>
+
+    <!-- Slideshow -->
+    <div class="slideshow">
+        <button class="slide-btn prev" aria-label="Föregående bild">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="22px" height="22px" fill="#FFDDB5">
+            <path d="M560-80 960-480 560-880l-71 71 329 329-329 329 71 71Z" />
+        </svg>
+        </button>
+
+        <img src="../assets/images/process_background.png" alt="Process image 1" class="slide active" />
+
+        <button class="slide-btn next" aria-label="Nästa bild">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="22px" height="22px" fill="#FFDDB5">
+            <path d="M560-80 960-480 560-880l-71 71 329 329-329 329 71 71Z" />
+        </svg>
+        </button>
+    </div>
+
+    <p>
+        När scenen var färdig började jag arbeta med de klickbara objekten. För att skapa tydliga visuella effekter vid interaktion renderade jag först hela scenen och därefter varje objekt separat, mot transparent bakgrund. På så sätt kunde jag simulera markering och djup i stillbilderna utan att behöva ladda några tunga 3D-element.Det blev en balans mellan känsla och prestanda.
+    </p>
+
+    <img src="../assets/images/process_objects.png" alt="Renderade objekt" class="process-image" />
+
+    <!-- Icon section -->
+    <h3>Att forma symbolerna</h3>
+    <p>
+        För att behålla en enhetlig visuell stil skapade jag egna ikoner i Adobe Illustrator. De används i diktmodalerna och speglar de objekt som finns i vinden, men i en enklare, stiliserad form. Jag ville ha ett sätt att tydligt visa vilket objekt som var aktivt, utan att behöva använda rubriker eller text, och landade därför i att skapa egna platta ikoner som liknar föremålen i scenen.
+    </p>
+
+    <img src="../assets/images/process-icons.png" alt="Egna ikoner" class="process-image" />
+
+    <!-- Code section -->
+    <h3>Att bygga upp logiken</h3>
+    <p>
+        All interaktivitet på sidan är byggd i ren HTML, CSS och JavaScript - utan externa bibliotek. Målet var att skapa en lätt och responsiv upplevelse, där varje klick och rörelse känns direkt och avsiktlig.
+    </p>
+
+    <p>
+        Strukturen är uppdelad i små, tydliga filer för menyer, modaler och ljud, vilket gör det lätt att justera varje del utan att påverka helheten. Dikterna laddas dynamiskt via JSON, medan meny-modulerna hanteras som enklare HTML-snippets - en balans mellan flexibilitet och prestanda.
+    </p>
+
+    <p>
+        Jag valde bort tunga ramverk för att behålla full kontroll över koden och sidans rytm. Allt skulle laddas snabbt, kännas följsamt och aldrig skymma det viktigaste: upplevelsen. Kodens uppgift är att bära stämningen: inte märkas, bara kännas.
+    </p>
+
+    <!-- Music section -->
+    <h3>Bakgrundsmusiken</h3>
+    <p>
+        Jag är ingen kompositör, och för ett personligt och icke-kommersiellt projekt fanns ingen budget för att beställa originalmusik.
+    </p>
+
+    <p>
+        Jag valde därför att använda Suno AI för att generera bakgrundsmusiken till vinden. Beslutet var inte självklart. Jag har känt tvekan inför de etiska och upphovsrättsliga aspekterna, eftersom Suno AI står under rättsliga prövningar kring datan den tränats på. I det här sammanhanget kändes det ändå rimligt, då musiken inte används i kommersiellt syfte utan som en del av helhetsupplevelsen.
+    </p>
+
+    <p>
+        Jag arbetade länge med att hitta rätt känsla - ett ljudlandskap som kunde bära rummets stillhet och dikternas ton.
+        <br>Prompten jag till slut använde var:
+    </p>
+
+    <div class="quote">
+        "Soft instrumental ambient piece featuring piano and distant strings, evoking childhood memories and quiet reflection. Minimal melody, focus on atmosphere and warmth."
+    </div>
+
+    <hr>
+
+    <p class="process-ending">
+        Att arbeta med vinden har varit en uppfriskande och oväntat rolig resa.<br>
+        Jag har fått väva samman flera kreativa och digitala delar - skrivande, 3D, design, ljud och kod - till ett enda sammanhängande projekt. Det har påmint mig om varför jag älskar att skapa: att få låta nyfikenhet och hantverk mötas, och se något växa fram som bär både tanke och känsla.
+    </p>
+</section>

@@ -362,7 +362,7 @@ html, body {
   color: #FFDDB5;
   text-align: center;
   line-height: 1.6;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .info-title {
@@ -398,12 +398,14 @@ html, body {
 }
 
 .info-body {
-  text-align: left;
+  text-align: justify;
   max-width: 580px;
   margin: 0 auto;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   height: calc(100% - 180px);
+  max-height: none !important;
+  overflow-y: auto !important;
   overflow-y: auto;
   padding-right: 0.6rem;
 }
@@ -483,6 +485,93 @@ body:has(.info-modal:not(.hidden)) .global-sound {
   display: none !important;
   pointer-events: none;
 }
+
+/* Process section  */
+.process-section img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 0.4rem;
+}
+
+.process-section h3 {
+  text-transform: uppercase;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Slideshow container */
+.slideshow {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+/* Slideshow images */
+.slideshow img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Slideshow arrows */
+.slide-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(28, 28, 28, 0.55);
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  z-index: 2;
+}
+
+.slide-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: #FFDDB5;
+  transition: fill 0.25s ease, filter 0.25s ease;
+}
+
+.slide-btn.prev svg {
+  margin-right: 6px
+}
+
+.slide-btn.next svg {
+  margin-right: 5px;
+}
+
+.slide-btn:hover svg {
+  fill: #FFE4C5;
+  filter: drop-shadow(0 0 4px rgba(255, 220, 160, 0.8));
+}
+
+.slide-btn.prev {
+  left: 0.6rem;
+  transform: scaleX(-1) translateY(-50%) translateX(2px);
+}
+
+.slide-btn.next {
+  right: 0.6rem;
+  transform: translateY(-50%) translateX(2px);
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: #FFDDB5;
+  width: 80%;
+  margin: 3rem auto;
+}
+
 
 @media screen and (min-width: 768px) {
   .modal-content {
@@ -683,7 +772,6 @@ body:has(.info-modal:not(.hidden)) .global-sound {
   .info-body {
     height: calc(100% - 220px);
   }
-
 }
 
 /* Font and layout scaling for smallest devices */

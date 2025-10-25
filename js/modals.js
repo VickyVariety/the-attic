@@ -130,7 +130,7 @@ infoModal.innerHTML = `
 
         <nav class="info-tabs">
             <button data-file="about.html" class="active">Bakgrund</button>
-            <button data-file="tech.html">Teknisk fördjupning</button>
+            <button data-file="process.html">Processen</button>
             <button data-file="me.html">Om mig</button>
         </nav>
 
@@ -167,7 +167,7 @@ function loadInfoContent(fileName) {
       return res.text();
     })
     .then(html => {
-      infoBody.innerHTML = html;
+      infoBody.innerHTML = html;      
     })
     .catch(() => {
       infoBody.innerHTML = "<p>Kunde inte ladda innehållet just nu.</p>";
@@ -218,19 +218,17 @@ document.querySelectorAll("a").forEach(link => {
 
 // Close modals with esc
 document.addEventListener("keydown", function(e){
-    if (e.key === "Escape" || e.key === "Esc") {
-        // poem modal
-        if(!modal.classList.contains("hidden")) {
-            modal.classList.add("hidden");
-            if (typeof setMusicVolume == "function") setMusicVolume(0.3);
-        }
-        
-        // info modal
-        if(!infoModal.classList.contains("hidden")) {
-            if (!infoModal.classList.add("hidden")) {
-                infoModal.classList.add("hidden");
-                if (typeof setMusicVolume == "function") setMusicVolume(0.3);
-            }
-        }
+  if (e.key === "Escape" || e.key === "Esc") {
+    // poem modal
+    if (!modal.classList.contains("hidden")) {
+      modal.classList.add("hidden");
+      if (typeof setMusicVolume == "function") setMusicVolume(0.3);
     }
+
+    // info modal
+    if (!infoModal.classList.contains("hidden")) {
+      infoModal.classList.add("hidden");
+      if (typeof setMusicVolume == "function") setMusicVolume(0.3);
+    }
+  }
 });
